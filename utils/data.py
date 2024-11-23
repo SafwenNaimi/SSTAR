@@ -20,12 +20,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
 
 
-labels = { # 20 Classes
-    "crouch":0,
-    "sit_down":1,
-    "standing":2,
-    "UseCellPhone":3,
-    "Walk":4}
+labels = { # Your classes here}
 
 
 def load_kinetics(config, fold=0):
@@ -68,10 +63,10 @@ def load_mpose(dataset, split, verbose=False, legacy=False):
                     remove_zip=False)
     
     if 'legacy' not in dataset:
-        d.reduce_keypoints()
-        d.scale_and_center()
-        d.remove_confidence()
-        d.flatten_features()
+        d.reduce_keypoints() #reduce keypoints from 25 to 19
+        d.scale_and_center() #preprocessing step
+        d.remove_confidence() #preprocessing step
+        d.flatten_features() #preprocessing step
         #d.reduce_labels()
         return d.get_data()
     
