@@ -4,8 +4,8 @@ import os
 import json
 import numpy as np
 
-main_folder_path = 'C:/Users/safwe/Documents/Coding/AcT_STM/Action_keypoint+angles/walk'
-output_folder_path = 'C:/Users/safwe/Documents/Coding/AcT_STM/Action_keypoint+angles/walk'
+main_folder_path = 'C:/Users/Action_keypoint/walk'
+output_folder_path = 'C:/Users/Action_keypoint/walk'
 
 for root, dirs, files in os.walk(main_folder_path):
     for folder_name in dirs:
