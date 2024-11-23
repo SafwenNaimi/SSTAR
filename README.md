@@ -1,4 +1,4 @@
 # SSTAR
 
-This repository contains the code and dataset for the paper "SSTAR: Skeleton-based Spatio-temporal action recognition for intelligent video surveillance and suicide prevention in metro stations"
+This repository contains the official implementation for the paper "SSTAR: Skeleton-based Spatio-temporal action recognition for intelligent video surveillance and suicide prevention in metro stations"
 
