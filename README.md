@@ -22,6 +22,6 @@ Clone the repository and install the required pip packages (We recommend a virtu
 We provide link to the skeleton annotations of our ARMM dataset, you can directly download them and use them for training & testing.
 
 # Training:
-To run a baseline experiment:
+To run a baseline SSTAR experiment:
 
     python main.py -b 
