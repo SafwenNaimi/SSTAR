@@ -7,3 +7,4 @@ This repository contains the official implementation for the paper "SSTAR: Skele
 Clone this repository.
 
     git clone git@github.com:----/SSTAR.git
+    cd SSTAR
