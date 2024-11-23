@@ -8,3 +8,6 @@ Clone this repository.
 
     git clone git@github.com:GIT-USERNAME/SSTAR.git
     cd SSTAR
+
+Clone the repository and install the required pip packages (We recommend a virtual environment):
+
