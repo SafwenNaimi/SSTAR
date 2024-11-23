@@ -41,19 +41,15 @@ kinetics:
     KEYPOINTS: 18
     CLASSES: 400
     FRAMES: 300
-LABELS: ['A01','A02','A03','A04','A05','A06','A06','A07','A08','A09',
-         'A10','A11','A12','A13','object-throw','object-put','object-get','object-left','object-carry']
+LABELS: ['--','--','--','--','--']  #Write the labels here
 
 
-#LABELS: ['standing','check-watch','cross-arms','scratch-head','sit-down','get-up','turn-around','walking','wave1','boxing',
-#         'kicking','pointing','pick-up','bending','hands-clapping','wave2','jogging','jumping','pjump','running']
 
 #---- AUGMENTATION
 FLIP_P: 0.5
 RN_STD: 0.03
 
 #---- MODEL
-#PATCH_SIZE: 1
 MODEL_SIZE: 'small' #large for stm dataset
 POS_EMB: #'utils/pos_emb.npy'
 micro:        
@@ -64,7 +60,7 @@ micro:
     MLP: 256
 small:    
     N_HEADS: 1 #2
-    N_LAYERS: 6
+    N_LAYERS: 5
     EMBED_DIM: 64
     DROPOUT: 0.3
     MLP: 128
@@ -84,8 +80,8 @@ large:
 #---- TRAINING SETTINGS 
 SCHEDULER: True
 N_EPOCHS: 200       
-BATCH_SIZE: 128 #128 for STM dataset
-WEIGHT_DECAY: 0.0001  
+BATCH_SIZE: 64
+WEIGHT_DECAY: 0.001  
 WARMUP_PERC: 0.3 
 STEP_PERC: 0.8
 LR_MULT: 1
