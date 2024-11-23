@@ -15,5 +15,5 @@ Clone the repository and install the required pip packages (We recommend a virtu
 
 # Data preparation for our ARMM dataset:
 
-We provide link to the pre-processed skeleton annotations of our ARMM dataset, you can directly download them and use them for training & testing.
+We provide link to the skeleton annotations of our ARMM dataset, you can directly download them and use them for training & testing.
 
