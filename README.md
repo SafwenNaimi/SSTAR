@@ -3,3 +3,7 @@
 This repository contains the official implementation for the paper "SSTAR: Skeleton-based Spatio-temporal action recognition for intelligent video surveillance and suicide prevention in metro stations"
 
 # Installation
+
+Clone this repository.
+
+    pip install -r requirements.txt
