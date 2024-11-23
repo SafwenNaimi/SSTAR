@@ -12,37 +12,14 @@ import tensorflow as tf
 
 #wandb.init(entity="safwennaimi", sync_tensorboard=True)
 
-def focal_loss(gamma=2.0, alpha=0.25):
-    def loss(y_true, y_pred):
-        epsilon = tf.keras.backend.epsilon()
-        y_true = tf.cast(y_true, tf.float32)  # Cast y_true to float32
-        y_pred = tf.clip_by_value(y_pred, epsilon, 1.0 - epsilon)
-        cross_entropy = -y_true * tf.math.log(y_pred)
-        focal_loss = alpha * tf.math.pow(1 - y_pred, gamma) * cross_entropy
-        return tf.reduce_sum(focal_loss, axis=-1)
-    return loss
+
 
 
 
 if __name__ == "__main__":
-    wandb.login()
-    wandb.init(entity="safwennaimi", project="ViTPose-LSTM_UCLA")
-    config = wandb.config
-    #config.lr = 1e-3 #1e-5
-    config.batch_size = 4 #4
-    config.epochs = 100
-    config.dropout = 0.1
-    config.recurrent_dropout = 0.1
-    config.filters_1 = 64
-    config.filters_2 = 128
-    config.lstm = 16
-    config.lr = 0.0009524
-    config.dense = 90
-    config.kernel = 14
-    config.pool = 12
+    
 
-    crouch = np.load("E:/stm/Actions_keypoints/crouch+mcad.npy")
-    #crouch_mcad = np.load("E:/stm/Actions_keypoints/crouch+mcad.npy")
+    crouch = np.load("E:/stm/Actions_keypoints/crouch.npy")
     look_tunnel = np.load("E:/stm/Actions_keypoints/look_tunnel.npy")
     sit_down = np.load("E:/stm/Actions_keypoints/sit_down.npy")
     standing = np.load("E:/stm/Actions_keypoints/standing.npy")
@@ -51,7 +28,6 @@ if __name__ == "__main__":
 
 
     crouch = np.array(crouch)
-    #crouch_mcad = np.array(crouch_mcad)
     look_tunnel = np.array(look_tunnel)
     sit_down = np.array(sit_down)
     standing = np.array(standing)
@@ -68,28 +44,28 @@ if __name__ == "__main__":
     
     num_blocks_2 = look_tunnel.shape[0]
     seq_len_2 = look_tunnel.shape[1]
-    num_keypoints = 25 #25
+    num_keypoints = 25 
     num_coords = 3
     look_tunnel = look_tunnel.reshape(num_blocks_2, seq_len_2, num_keypoints, num_coords)
     
     # Reshape to (num_blocks, seq_len, num_keypoints, coords)
     num_blocks_3 = sit_down.shape[0]
     seq_len_3 = sit_down.shape[1]
-    num_keypoints = 25 #25
+    num_keypoints = 25 
     num_coords = 3
     sit_down = sit_down.reshape(num_blocks_3, seq_len_3, num_keypoints, num_coords)
 
     # Reshape to (num_blocks, seq_len, num_keypoints, coords)
     num_blocks_4 = standing.shape[0]
     seq_len_4 = standing.shape[1]
-    num_keypoints = 25 #25
+    num_keypoints = 25 
     num_coords = 3
     standing = standing.reshape(num_blocks_4, seq_len_4, num_keypoints, num_coords)
 
     # Reshape to (num_blocks, seq_len, num_keypoints, coords)
     num_blocks_5 = UseCellPhone.shape[0]
     seq_len_5 = UseCellPhone.shape[1]
-    num_keypoints = 25  #25
+    num_keypoints = 25  
     num_coords = 3
     UseCellPhone = UseCellPhone.reshape(num_blocks_5, seq_len_5, num_keypoints, num_coords)
 
@@ -107,7 +83,7 @@ if __name__ == "__main__":
 
     Final = np.concatenate((crouch, look_tunnel, sit_down, standing, UseCellPhone, walk))
     print(Final.shape)
-    #print(wave.shape)
+    
 
 
 
@@ -117,7 +93,7 @@ if __name__ == "__main__":
     standing_label = 3 * np.ones((3030), dtype="int").reshape(-1,1)
     UseCellPhone_label = 4 * np.ones((819), dtype="int").reshape(-1,1)
     walk_label = 5 * np.ones((2974), dtype="int").reshape(-1,1)
-    #crouch_mcad_label = 6 * np.ones((698), dtype="int").reshape(-1,1)
+    
 
 
 
@@ -132,11 +108,7 @@ if __name__ == "__main__":
         new_y.append(label)
         
     y = np.array(new_y)
-    #print(new_y.shape)
-    #for y in new_y: 
-    #    print(y)
-    #print(y.shape)
-    
+
     
     X_train, X_test, y_train, y_test = train_test_split(Final, y, test_size = 0.20, shuffle=True)
     print(X_train.shape)
@@ -144,8 +116,8 @@ if __name__ == "__main__":
     print(y_train.shape)
     print(y_test.shape)
     
-    np.save('E:/stm/Actions_keypoints/X_train+mcad.npy', X_train)
-    np.save('E:/stm/Actions_keypoints/X_test+mcad.npy', X_test) 
-    np.save('E:/stm/Actions_keypoints/y_train+mcad.npy', y_train)
-    np.save('E:/stm/Actions_keypoints/y_test+mcad.npy', y_test)
+    np.save('E:/stm/Actions_keypoints/X_train.npy', X_train)
+    np.save('E:/stm/Actions_keypoints/X_test.npy', X_test) 
+    np.save('E:/stm/Actions_keypoints/y_train.npy', y_train)
+    np.save('E:/stm/Actions_keypoints/y_test.npy', y_test)
     
