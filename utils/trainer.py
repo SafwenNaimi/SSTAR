@@ -30,7 +30,7 @@ from wandb.keras import WandbCallback
 
 import wandb
 wandb.login()
-wandb.init(entity="safwennaimi", project="STM_sLSTM_swin")
+wandb.init(entity="---", project="---")
 config = wandb.config
 config.lr = 1e-3 #1e-5
 config.batch_size = 4 #4
@@ -215,16 +215,6 @@ class sLSTM(tf.keras.layers.Layer):
         return output, final_state
 
 
-def focal_loss(gamma=2.0, alpha=0.25):
-    def loss(y_true, y_pred):
-        epsilon = tf.keras.backend.epsilon()
-        y_true = tf.cast(y_true, tf.float32)  # Cast y_true to float32
-        y_pred = tf.clip_by_value(y_pred, epsilon, 1.0 - epsilon)
-        cross_entropy = -y_true * tf.math.log(y_pred)
-        focal_loss = alpha * tf.math.pow(1 - y_pred, gamma) * cross_entropy
-        return tf.reduce_sum(focal_loss, axis=-1)
-    return loss 
-
 
 # TRAINER CLASS 
 class Trainer:
@@ -253,7 +243,7 @@ class Trainer:
         print(inputs.shape)
         
         # Define sLSTM layer configuration
-        """
+        
         slstm_layer = sLSTM(input_size=self.d_model, 
                             hidden_size=64,  # Add this line
                             num_heads=1, 
@@ -261,10 +251,8 @@ class Trainer:
         
         x = tf.keras.layers.Dense(self.d_model)(inputs)
         x, _ = slstm_layer(x)  # Pass through sLSTM layer
-        """
         
-        x = tf.keras.layers.LSTM(64, return_sequences=True)(inputs)  
-        x = tf.keras.layers.Dense(self.d_model)(x)
+        #x = tf.keras.layers.Dense(self.d_model)(x)
         #x = tf.keras.layers.Dense(self.d_model)(inputs)
         x = transformer(x)
         print(x)
@@ -486,31 +474,6 @@ class Trainer:
         self.print_confusion_matrix(all_y_true, all_y_pred, self.class_names)
         self.print_classification_report(all_y_true, all_y_pred, self.class_names)
         
-    def do_random_search(self):
-        pruner = optuna.pruners.HyperbandPruner()
-        self.study = optuna.create_study(study_name='{}_random_search'.format(self.config['MODEL_NAME']),
-                                         direction="maximize", pruner=pruner)
-        self.study.optimize(lambda trial: self.objective(trial),
-                            n_trials=self.config['N_TRIALS'])
-
-        pruned_trials = self.study.get_trials(deepcopy=False, states=[TrialState.PRUNED])
-        complete_trials = self.study.get_trials(deepcopy=False, states=[TrialState.COMPLETE])
-
-        self.logger.save_log("Study statistics: ")
-        self.logger.save_log(f"  Number of finished trials: {len(self.study.trials)}")
-        self.logger.save_log(f"  Number of pruned trials: {len(pruned_trials)}")
-        self.logger.save_log(f"  Number of complete trials: {len(complete_trials)}")
-
-        self.logger.save_log("Best trial:")
-
-        self.logger.save_log(f"  Value: {self.study.best_trial.value}")
-
-        self.logger.save_log("  Params: ")
-        for key, value in self.study.best_trial.params.items():
-            self.logger.save_log(f"    {key}: {value}")
-
-        joblib.dump(self.study,
-          f"{self.config['RESULTS_DIR']}/{self.config['MODEL_NAME']}_{self.config['DATASET']}_random_search_{str(self.study.best_trial.value)}.pkl")
         
     def return_model(self):
         return self.model
