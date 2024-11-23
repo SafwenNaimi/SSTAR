@@ -5,35 +5,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
 
 
-labels = { # Your classes here}
+labels = { # Your classes here
+          }
 
-
-def load_kinetics(config, fold=0):
-    
-    X_train = np.load('/media/Datasets/kinetics/train_data_joint.npy') #[...,0] # get first pose
-    X_train = np.moveaxis(X_train,1,3)
-    X_train = X_train.reshape(X_train.shape[0], X_train.shape[1], -1)
-    X_train = X_train[:,::config['SUBSAMPLE'],:]
-    y_train = np.load('/media/Datasets/kinetics/train_label.pkl', allow_pickle=True)
-    y_train = np.transpose(np.array(y_train))[:,1].astype('float32') # get class only
-    
-    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train,
-                                                      test_size=config['VAL_SIZE'],
-                                                      random_state=config['SEEDS'][fold],
-                                                      stratify=y_train)
-    
-    X_test = np.load('/media/Datasets/kinetics/val_data_joint.npy') #[...,0] # get first pose
-    X_test = np.moveaxis(X_test,1,3)
-    X_test = X_test.reshape(X_test.shape[0], X_test.shape[1], -1)
-    X_test = X_test[:,::config['SUBSAMPLE'],:]
-    y_test = np.load('/media/Datasets/kinetics/val_label.pkl', allow_pickle=True)
-    y_test = np.transpose(np.array(y_test))[:,1].astype('float32') # get class only
-    
-    train_gen = callable_gen(kinetics_generator(X_train, y_train, config['BATCH_SIZE']))
-    val_gen = callable_gen(kinetics_generator(X_val, y_val, config['BATCH_SIZE']))
-    test_gen = callable_gen(kinetics_generator(X_test, y_test, config['BATCH_SIZE']))
-    
-    return train_gen, val_gen, test_gen, len(y_train), len(y_test)
 
 
 def load_mpose(dataset, split, verbose=False, legacy=False):
