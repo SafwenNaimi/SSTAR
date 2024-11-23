@@ -6,4 +6,4 @@ This repository contains the official implementation for the paper "SSTAR: Skele
 
 Clone this repository.
 
-    pip install -r requirements.txt
+    git clone git@github.com:SafwenNaimi/SSTAR.git
