@@ -4,6 +4,10 @@ This repository contains the official implementation for the paper "SSTAR: Skele
 
 # Installation
 
+* tensorflow 2.6.0
+* Python 3.8.5
+* numpy 1.23.5
+
 Clone this repository.
 
     git clone git@github.com:GIT-USERNAME/SSTAR.git
