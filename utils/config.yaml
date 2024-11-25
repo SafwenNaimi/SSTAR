@@ -19,7 +19,7 @@ DATASET: 'openpose'
 LEGACY: False
 openpose:
     KEYPOINTS: 15 #25
-    CLASSES: 6 #6 for STM dataset
+    CLASSES: 6 #6 for ARMM dataset
     FRAMES: 30
 posenet:
     KEYPOINTS: 13
@@ -50,7 +50,7 @@ FLIP_P: 0.5
 RN_STD: 0.03
 
 #---- MODEL
-MODEL_SIZE: 'small' #large for stm dataset
+MODEL_SIZE: 'small' #large for ARMM dataset
 POS_EMB: #'utils/pos_emb.npy'
 micro:        
     N_HEADS: 1
