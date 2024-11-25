@@ -19,6 +19,12 @@ Clone the repository and install the required pip packages (We recommend a virtu
 
     pip install -r requirements.txt
 
+# Training:
+To run a baseline SSTAR experiment:
+
+    python main.py -b 
+    
+
 # Notice Regarding ARMM dataset Usage:
 
 Dear Researchers and Collaborators,
@@ -40,7 +46,3 @@ Thank you for supporting responsible research practices.
 
 
 
-# Training:
-To run a baseline SSTAR experiment:
-
-    python main.py -b 
