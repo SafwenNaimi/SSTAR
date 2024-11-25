@@ -1,6 +1,7 @@
 # SSTAR
 
-![alt text](https://github.com/SafwenNaimi/SSTAR/tree/main/blob/main/architecture.png)
+![alt text](https://github.com/SafwenNaimi/SSTAR/tree/blob/main/architecture.png)
+
 This repository contains the official implementation for the paper "SSTAR: Skeleton-based Spatio-temporal action recognition for intelligent video surveillance and suicide prevention in metro stations"
 
 # Installation
