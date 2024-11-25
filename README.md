@@ -26,7 +26,7 @@ Dear Researchers and Collaborators,
 
 As part of our commitment to advancing research, we have provided a benchmark skeleton dataset. While we are excited to share this resource with the community, we want to highlight some important considerations:
 
-* Copyright Compliance: This dataset is shared for research purposes only. Please ensure that your use of the dataset complies with all applicable copyright laws and regulations. Redistribution of the dataset without proper authorization is not permitted.
+* # Copyright Compliance: This dataset is shared for research purposes only. Please ensure that your use of the dataset complies with all applicable copyright laws and regulations. Redistribution of the dataset without proper authorization is not permitted.
 
 * Privacy Considerations: We have taken steps to ensure the privacy and confidentiality of any individuals or entities represented in the dataset. We only provide the skeleton ground truth annotations of our ARMM dataset. Researchers can directly download them and use them for training & testing.
 
