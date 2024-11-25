@@ -19,8 +19,7 @@ Clone the repository and install the required pip packages (We recommend a virtu
 
 # Data preparation for our ARMM dataset:
 
-We provide link to the skeleton ground truth annotations of our ARMM dataset, you can directly download them and use them for training & testing.
-https://file.io/33ooJMSL6hTp
+We provide the skeleton ground truth annotations of our ARMM dataset, you can directly download them and use them for training & testing.
 
 # Training:
 To run a baseline SSTAR experiment:
